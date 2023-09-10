@@ -8,7 +8,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
@@ -43,8 +42,7 @@ public class CreditCardsMainTest {
 
         assertThat(address.getStreet(), is("Inndalsveien"));
         assertThat(address.getNumber(), is(28));
-
-        assertThat(address.getOwners().iterator().next(), is(customer));
+        assertThat(address.getOwners(), is(Set.of(customer)));
 
         // Test credit cards
         assertThat(customer.getCreditCards().size(), is(2));
@@ -70,11 +68,7 @@ public class CreditCardsMainTest {
         Bank bank = firstCard.getOwningBank();
         assertThat(bank.getId(), is(secondCard.getOwningBank().getId())); // Bank objects of the two cards are identical!
         assertThat(bank.getName(), is("Pengebank"));
-        // Check that the cards are registered with the bank are the same as the cards we have
-        assertThat(bank.getOwnedCards().size(), is(2));
-        Collection<CreditCard> bankCards = bank.getOwnedCards();
-        assertThat(bankCards.contains(firstCard), is(true));
-        assertThat(bankCards.contains(secondCard), is(true));
+        assertThat(bank.getOwnedCards(), is(Set.of(firstCard, secondCard)));
     }
 
     private CreditCard getCardWithNumber(Customer customer, int cardNumber) {

@@ -21,7 +21,6 @@ public class CreditCardsMain {
       createObjects(em);
       em.getTransaction().commit();
     }
-
   }
 
   private static void createObjects(EntityManager em) {
@@ -51,6 +50,8 @@ public class CreditCardsMain {
 
     Collection<Address> addresses = new ArrayList<>();
     addresses.add(address);
+    customer.setAddresses(addresses);
+
 
     card2.setPincode(pincode);
     card.setPincode(pincode);
@@ -62,7 +63,6 @@ public class CreditCardsMain {
     cards.add(card);
     cards.add(card2);
 
-    customer.setAddresses(addresses);
     customer.setCreditCards(cards);
 
     em.persist(address);
