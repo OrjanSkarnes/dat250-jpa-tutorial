@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,4 +21,8 @@ public class Bank {
 
     @OneToMany(mappedBy = "owningBank")
     private Collection<CreditCard> ownedCards = new ArrayList<>();
+
+    public Collection<CreditCard> getOwnedCards() {
+        return Set.copyOf(ownedCards);
+    }
 }
