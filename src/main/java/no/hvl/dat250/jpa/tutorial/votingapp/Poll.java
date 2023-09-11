@@ -35,10 +35,10 @@ public class Poll {
 
     private boolean privateAccess;
 
-    @OneToMany(mappedBy = "poll")
+    @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL)
     private List<Vote> votes = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "polls")
+    @ManyToMany
     private List<Group> groups = new ArrayList<>();
 
     @ManyToMany

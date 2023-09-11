@@ -1,6 +1,7 @@
 package no.hvl.dat250.jpa.tutorial.votingapp.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import no.hvl.dat250.jpa.tutorial.votingapp.Poll;
@@ -10,11 +11,8 @@ import java.util.List;
 
 @AllArgsConstructor
 public class UserDao {
-    private Long id;
-    private String username;
-    private String password;
 
-
+    @PersistenceContext(unitName = "votingapp")
     private EntityManager em;
 
     public User createUser(User user) {

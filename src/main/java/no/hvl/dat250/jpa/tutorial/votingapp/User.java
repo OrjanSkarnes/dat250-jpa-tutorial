@@ -16,6 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true) // Username must be unique
     private String username;
 
     private String password;
@@ -23,7 +24,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Roles role;
 
-    @OneToMany(mappedBy = "creator")
+    // Cascade all ensures that if we delete a user, all polls created by that user will also be deleted
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     private List<Poll> createdPolls = new ArrayList<>();
 
     @ManyToMany(mappedBy = "users")
@@ -32,7 +34,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Vote> votes = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "members")
     private List<Group> groups = new ArrayList<>();
 }
 

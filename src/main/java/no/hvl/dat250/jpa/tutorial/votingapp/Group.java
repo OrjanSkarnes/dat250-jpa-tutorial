@@ -20,9 +20,9 @@ public class Group {
 
     private String name;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany
     private List<User> members = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "groups")
     private List<Poll> polls = new ArrayList<>();
 }

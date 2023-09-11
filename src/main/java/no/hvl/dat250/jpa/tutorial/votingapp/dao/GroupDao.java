@@ -1,6 +1,7 @@
 package no.hvl.dat250.jpa.tutorial.votingapp.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,8 @@ import java.util.List;
 
 @AllArgsConstructor
 public class GroupDao {
+
+    @PersistenceContext(unitName = "votingapp")
     private EntityManager em;
 
     public Group createGroup(Group group) {

@@ -1,6 +1,7 @@
 package no.hvl.dat250.jpa.tutorial.votingapp.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import lombok.AllArgsConstructor;
 import no.hvl.dat250.jpa.tutorial.votingapp.Poll;
@@ -10,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PollDao {
 
+    @PersistenceContext(unitName = "votingapp")
     private EntityManager em;
 
     public Poll createPoll(Poll poll) {
